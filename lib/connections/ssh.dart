@@ -4,6 +4,9 @@ import 'dart:typed_data';
 import 'package:dartssh2/dartssh2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/entities/screen_overlay_entity.dart';
+
+import '../entities/kml_entity.dart';
 
 class SSH {
   late String _host;
@@ -12,6 +15,17 @@ class SSH {
   late String _passwordOrKey;
   late String _numberOfRigs;
   SSHClient? _client;
+
+  int get leftScreen {
+    final rigs = int.tryParse(_numberOfRigs);
+    if (rigs == null || rigs <= 0) {
+      return 1;
+    }
+    if (rigs == 1) {
+      return 1;
+    }
+    return (rigs / 2).floor() + 2;
+  }
 
   // Initialize connection details from shared preferences
   Future<void> initConnectionDetails() async {
@@ -115,17 +129,17 @@ class SSH {
   }
 
   // Clean Logo Function
-  Future<void> cleanLogo() async {
-    try {
-      if (_client == null) return;
+  //Future<void> cleanLogo() async {
+   // try {
+     // if (_client == null) return;
 
-      for (var i = 2; i <= int.parse(_numberOfRigs); i++) {
-        await _client?.run("echo '' > /var/www/html/kml/slave_$i.kml");
-      }
-    } catch (e) {
-      print('Failed to clean logo: $e');
-    }
-  }
+      //for (var i = 2; i <= int.parse(_numberOfRigs); i++) {
+       // await _client?.run("echo '' > /var/www/html/kml/slave_$i.kml");
+     // }
+    //} catch (e) {
+     // print('Failed to clean logo: $e');
+   // }
+ // }
 
   // Set Slave Refresh Function
   Future<void> setSlaveRefresh() async {
@@ -159,30 +173,30 @@ class SSH {
   }
 
   // Set Logo Function
-  Future<void> setLogo() async {
-    try {
-      if (_client == null) return;
+  //Future<void> setLogo() async {
+    //try {
+      //if (_client == null) return;
 
-      const String logoContent = '''<?xml version="1.0" encoding="UTF-8"?>
-        <kml xmlns="http://www.opengis.net/kml/2.2">
-          <ScreenOverlay>
-            <name>Logo</name>
-            <Icon>
-              <href>https://your-logo-url.com/logo.png</href>
-            </Icon>
-            <overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
-            <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
-            <size x="0.2" y="0.2" xunits="fraction" yunits="fraction"/>
-          </ScreenOverlay>
-        </kml>''';
+      //const String logoContent = '''<?xml version="1.0" encoding="UTF-8"?>
+        //<kml xmlns="http://www.opengis.net/kml/2.2">
+         // <ScreenOverlay>
+         //   <name>Logo</name>
+          //  <Icon>
+           //   <href>https://1.bp.blogspot.com/-POkV83Ut-7k/XdjpKI4M8AI/AAAAAAAHdXA/VSFXPJQsIOkdqtkJrGnh59WxaRqaQEtmQCLcBGAsYHQ/s1600/LOGO%2BLIQUID%2BGALAXY-sq1000-%2BOKnoline.png</href>
+            //</Icon>
+            //<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+            //<screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+            //<size x="0.2" y="0.2" xunits="fraction" yunits="fraction"/>
+          //</ScreenOverlay>
+        //</kml>''';
 
-      await _client?.run(
-          "echo '$logoContent' > /var/www/html/kml/slave_1.kml"
-      );
-    } catch (e) {
-      print('Failed to set logo: $e');
-    }
-  }
+      //await _client?.run(
+        //  "echo '$logoContent' > /var/www/html/kml/slave_1.kml"
+      //);
+    //} catch (e) {
+      //print('Failed to set logo: $e');
+   // }
+ // }
 
   // Reboot KML Function
   Future<void> rebootKML() async {
@@ -255,6 +269,59 @@ class SSH {
       await _client?.run('echo "exittour=true" > /tmp/query.txt');
     } catch (e) {
       print('Failed to stop tour: $e');
+    }
+  }
+
+  Future<void> setLogo() async {
+    try {
+      if (_client == null) {
+        print('SSH client is not initialized.');
+        return;
+      }
+
+      // Create screen overlay using the entity
+      final screenOverlay = ScreenOverlayEntity.logos();
+
+      // Create KML entity
+      final kml = KMLEntity(
+        name: 'LG-Logo',
+        content: '<name>Liquid Galaxy Logo</name>',
+        screenOverlay: screenOverlay.tag,
+      );
+
+      // Send to the correct slave screen
+      await _client?.run(
+          "echo '${kml.body}' > /var/www/html/kml/slave_$leftScreen.kml"
+      );
+
+      print('Logo set successfully on screen $leftScreen');
+    } catch (e) {
+      print('Failed to set logo: $e');
+    }
+  }
+
+  Future<void> cleanLogo() async {
+    try {
+      if (_client == null) {
+        print('SSH client is not initialized.');
+        return;
+      }
+
+      // Create a blank KML
+      String blankKML = '''<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="blank">
+  </Document>
+</kml>''';
+
+      // Clean the logo from the left screen
+      await _client?.run(
+          "echo '$blankKML' > /var/www/html/kml/slave_$leftScreen.kml"
+      );
+
+      print('Logo cleaned successfully from screen $leftScreen');
+    } catch (e) {
+      print('Failed to clean logo: $e');
     }
   }
 }

@@ -6,6 +6,7 @@ import '../connections/ssh.dart';
 
 bool connectionStatus = false;
 // TODO 17: Initialize const String searchPlace
+const String searchPlace = '';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
