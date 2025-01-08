@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+    <name>Asian Historical Cities Tour</name>
+
+    <!-- City Information Overlays with improved styling -->
+    <ScreenOverlay id="info-kyoto">
+      <name>Kyoto Info</name>
+      <visibility>0</visibility>
+      <overlayXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+      <size x="0.4" y="0.25" xunits="fraction" yunits="fraction"/>
+      <description><![CDATA[
+        <div style="color: white; font-family: Arial; font-size: 18px; background-color: rgba(0,0,0,0.85); padding: 20px; border-radius: 10px; border-left: 4px solid #ffaa00;">
+          <h2 style="color: #ffaa00; margin: 0 0 10px 0;">Kyoto (794-1868)</h2>
+          • Japan's imperial capital for over 1000 years<br/>
+          • 1600 Buddhist temples, 400 Shinto shrines<br/>
+          • 17 UNESCO World Heritage sites<br/>
+          • Center of Japanese arts and culture
+        </div>
+      ]]></description>
+    </ScreenOverlay>
+
+    <ScreenOverlay id="info-xian">
+      <name>Xian Info</name>
+      <visibility>0</visibility>
+      <overlayXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+      <size x="0.4" y="0.25" xunits="fraction" yunits="fraction"/>
+      <description><![CDATA[
+        <div style="color: white; font-family: Arial; font-size: 18px; background-color: rgba(0,0,0,0.85); padding: 20px; border-radius: 10px; border-left: 4px solid #ffaa00;">
+          <h2 style="color: #ffaa00; margin: 0 0 10px 0;">Xi'an (Chang'an)</h2>
+          • Eastern terminus of the Silk Road<br/>
+          • Capital of 13 dynasties<br/>
+          • Home to Terracotta Army<br/>
+          • World's largest city during Tang Dynasty
+        </div>
+      ]]></description>
+    </ScreenOverlay>
+
+    <ScreenOverlay id="info-angkor">
+      <name>Angkor Info</name>
+      <visibility>0</visibility>
+      <overlayXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+      <size x="0.4" y="0.25" xunits="fraction" yunits="fraction"/>
+      <description><![CDATA[
+        <div style="color: white; font-family: Arial; font-size: 18px; background-color: rgba(0,0,0,0.85); padding: 20px; border-radius: 10px; border-left: 4px solid #ffaa00;">
+          <h2 style="color: #ffaa00; margin: 0 0 10px 0;">Angkor (802-1431)</h2>
+          • Capital of Khmer Empire<br/>
+          • World's largest pre-industrial city<br/>
+          • Home to Angkor Wat temple complex<br/>
+          • Advanced hydraulic engineering system
+        </div>
+      ]]></description>
+    </ScreenOverlay>
+
+    <ScreenOverlay id="info-delhi">
+      <name>Delhi Info</name>
+      <visibility>0</visibility>
+      <overlayXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+      <size x="0.4" y="0.25" xunits="fraction" yunits="fraction"/>
+      <description><![CDATA[
+        <div style="color: white; font-family: Arial; font-size: 18px; background-color: rgba(0,0,0,0.85); padding: 20px; border-radius: 10px; border-left: 4px solid #ffaa00;">
+          <h2 style="color: #ffaa00; margin: 0 0 10px 0;">Delhi - City of Seven Cities</h2>
+          • Capital of Delhi Sultanate and Mughals<br/>
+          • Home to Red Fort and Qutub Minar<br/>
+          • Center of Indo-Islamic architecture<br/>
+          • Multiple historic cities within modern Delhi
+        </div>
+      ]]></description>
+    </ScreenOverlay>
+
+    <ScreenOverlay id="info-istanbul">
+      <name>Istanbul Info</name>
+      <visibility>0</visibility>
+      <overlayXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
+      <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+      <size x="0.4" y="0.25" xunits="fraction" yunits="fraction"/>
+      <description><![CDATA[
+        <div style="color: white; font-family: Arial; font-size: 18px; background-color: rgba(0,0,0,0.85); padding: 20px; border-radius: 10px; border-left: 4px solid #ffaa00;">
+          <h2 style="color: #ffaa00; margin: 0 0 10px 0;">Istanbul (Constantinople)</h2>
+          • Capital of Roman, Byzantine, Ottoman Empires<br/>
+          • Home to Hagia Sophia and Blue Mosque<br/>
+          • Strategic location on Bosphorus Strait<br/>
+          • Bridge between Europe and Asia
+        </div>
+      ]]></description>
+    </ScreenOverlay>
+
+    <gx:Tour>
+      <name>City Tour</name>
+      <gx:Playlist>
+        <!-- Initial view -->
+        <gx:FlyTo>
+          <gx:duration>3</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>100</longitude>
+            <latitude>30</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>0</tilt>
+            <range>10000000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <!-- Kyoto -->
+        <gx:FlyTo>
+          <gx:duration>3</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>135.7681</longitude>
+            <latitude>35.0116</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>50000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+        
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <gx:FlyTo>
+          <gx:duration>2</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>135.7681</longitude>
+            <latitude>35.0116</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>5000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <!-- Xi'an -->
+        <gx:FlyTo>
+          <gx:duration>3</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>108.9398</longitude>
+            <latitude>34.3416</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>50000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <gx:FlyTo>
+          <gx:duration>2</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>108.9398</longitude>
+            <latitude>34.3416</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>5000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <!-- Angkor -->
+        <gx:FlyTo>
+          <gx:duration>3</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>103.8667</longitude>
+            <latitude>13.4125</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>50000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <gx:FlyTo>
+          <gx:duration>2</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>103.8667</longitude>
+            <latitude>13.4125</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>5000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <!-- Delhi -->
+        <gx:FlyTo>
+          <gx:duration>3</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>77.2090</longitude>
+            <latitude>28.6139</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>50000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <gx:FlyTo>
+          <gx:duration>2</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>77.2090</longitude>
+            <latitude>28.6139</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>5000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <!-- Istanbul -->
+        <gx:FlyTo>
+          <gx:duration>3</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>28.9784</longitude>
+            <latitude>41.0082</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>50000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+        <gx:FlyTo>
+          <gx:duration>2</gx:duration>
+          <gx:flyToMode>smooth</gx:flyToMode>
+          <LookAt>
+            <longitude>28.9784</longitude>
+            <latitude>41.0082</latitude>
+            <altitude>0</altitude>
+            <heading>0</heading>
+            <tilt>60</tilt>
+            <range>5000</range>
+            <altitudeMode>relativeToGround</altitudeMode>
+          </LookAt>
+        </gx:FlyTo>
+
+        <gx:Wait>
+          <gx:duration>3</gx:duration>
+        </gx:Wait>
+
+      </gx:Playlist>
+    </gx:Tour>
+  </Document>
+</kml>
