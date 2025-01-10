@@ -89,7 +89,7 @@ class ScreenOverlayEntity {
       screenX: 0.02,
       screenY: 0.95,
       sizeX: 500,
-      sizeY: 500,
+      sizeY: 389,
     );
   }
 }
