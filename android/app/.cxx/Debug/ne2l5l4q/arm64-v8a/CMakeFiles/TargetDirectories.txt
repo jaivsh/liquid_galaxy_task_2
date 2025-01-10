@@ -1,0 +1,2 @@
+C:/Users/vedan/Documents/untitled/untitled/android/app/.cxx/Debug/ne2l5l4q/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/vedan/Documents/untitled/untitled/android/app/.cxx/Debug/ne2l5l4q/arm64-v8a/CMakeFiles/rebuild_cache.dir

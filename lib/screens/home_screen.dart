@@ -5,7 +5,6 @@ import 'package:untitled/components/connection_flag.dart';
 import '../connections/ssh.dart';
 
 bool connectionStatus = false;
-// TODO 17: Initialize const String searchPlace
 const String searchPlace = '';
 
 class HomeScreen extends StatefulWidget {
@@ -16,8 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // TODO 13: Initialize SSH instance just like you did in the settings_page.dart
   late SSH ssh;
+  bool _isLoading = false;
+  String _tourStatus = '';
+  double _tourProgress = 0;
 
   @override
   void initState() {
@@ -103,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.person, color: Colors.black87),
             onPressed: () async {
               await Navigator.pushNamed(context, '/about');
-              //_connectToLG();
             },
           ),
         ],
@@ -111,12 +111,41 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            // Connection Status
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 10),
               child: ConnectionFlag(
                 status: connectionStatus,
               ),
             ),
+
+            // Progress Indicator (only shown when loading)
+            if (_isLoading) ...[
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Column(
+                  children: [
+                    LinearProgressIndicator(
+                      value: _tourProgress >= 0 ? _tourProgress : 0,
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        _tourProgress >= 0 ? Colors.blue : Colors.red,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      _tourStatus,
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        color: _tourProgress >= 0 ? Colors.blue : Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+
+            // Grid of Action Cards
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -174,17 +203,61 @@ class _HomeScreenState extends State<HomeScreen> {
                             icon: Icons.send,
                             color: Colors.green,
                             onTap: () async {
-                              await ssh.sendKML1AndStartTour();
+                              if (_isLoading) return;
+                              setState(() {
+                                _isLoading = true;
+                                _tourProgress = 0;
+                                _tourStatus = 'Initializing...';
+                              });
+
+                              await ssh.sendKML1AndStartTour(
+                                onProgress: (status, progress) {
+                                  setState(() {
+                                    print(status);
+                                    _tourStatus = status;
+                                    _tourProgress = progress;
+                                    if (progress == 1.0 || progress == -1) {
+                                      _isLoading = false;
+                                    }
+                                  });
+                                },
+                              );
                             },
                           ),
                           _buildActionCard(
                             title: 'Send KML 2',
-                            icon: Icons.send_and_archive,
-                            color: Colors.deepPurple,
+                            icon: Icons.send,
+                            color: Colors.green,
                             onTap: () async {
-                              await ssh.execute();  // Using the initial execute function for KML 2
+                              if (_isLoading) return;
+                              setState(() {
+                                _isLoading = true;
+                                _tourProgress = 0;
+                                _tourStatus = 'Initializing...';
+                              });
+
+                              await ssh.sendMarsKML(
+                                onProgress: (status, progress) {
+                                  setState(() {
+                                    print(status);
+                                    _tourStatus = status;
+                                    _tourProgress = progress;
+                                    if (progress == 1.0 || progress == -1) {
+                                      _isLoading = false;
+                                    }
+                                  });
+                                },
+                              );
                             },
                           ),
+                          // _buildActionCard(
+                          //   title: 'Send KML 2',
+                          //   icon: Icons.send_and_archive,
+                          //   color: Colors.deepPurple,
+                          //   onTap: () async {
+                          //     await ssh.execute();
+                          //   },
+                          // ),
                           _buildActionCard(
                             title: 'Set Logo',
                             icon: Icons.image,
@@ -207,6 +280,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+
+            // Footer Text
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(

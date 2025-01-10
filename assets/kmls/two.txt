@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+    <name>Mars Crater Tour</name>
+    <description>A virtual tour of famous craters on Mars: Gale, Jezero, and Hellas Basin.</description>
+
+    <!-- Switch to Mars -->
+    <NetworkLink>
+      <name>Switch to Mars</name>
+      <Link>
+        <href>http://lg1:81/mars.kml</href>
+      </Link>
+    </NetworkLink>
+
+    <!-- Gale Crater -->
+    <Placemark>
+      <name>Gale Crater</name>
+      <description>Gale Crater is home to Mount Sharp and was the landing site of the Curiosity rover. It offers key evidence of past water activity.</description>
+      <Point>
+        <coordinates>137.4,-4.6</coordinates>
+      </Point>
+      <LookAt>
+        <longitude>137.4</longitude>
+        <latitude>-4.6</latitude>
+        <altitude>5000</altitude>
+        <range>300000</range>
+        <tilt>45</tilt>
+        <heading>0</heading>
+      </LookAt>
+    </Placemark>
+
+    <!-- Jezero Crater -->
+    <Placemark>
+      <name>Jezero Crater</name>
+      <description>Jezero Crater is the landing site of the Perseverance rover. It features a delta system that could hold signs of ancient microbial life.</description>
+      <Point>
+        <coordinates>77.6,18.4</coordinates>
+      </Point>
+      <LookAt>
+        <longitude>77.6</longitude>
+        <latitude>18.4</latitude>
+        <altitude>5000</altitude>
+        <range>300000</range>
+        <tilt>45</tilt>
+        <heading>0</heading>
+      </LookAt>
+    </Placemark>
+
+    <!-- Hellas Basin -->
+    <Placemark>
+      <name>Hellas Basin</name>
+      <description>Hellas Basin is one of the largest impact basins in the solar system, with a depth of about 7 kilometers.</description>
+      <Point>
+        <coordinates>70.0,-42.0</coordinates>
+      </Point>
+      <LookAt>
+        <longitude>70.0</longitude>
+        <latitude>-42.0</latitude>
+        <altitude>5000</altitude>
+        <range>500000</range>
+        <tilt>45</tilt>
+        <heading>0</heading>
+      </LookAt>
+    </Placemark>
+
+    <!-- gx:Tour for a guided experience -->
+    <gx:Tour>
+      <name>Mars Crater Guided Tour</name>
+      <gx:Playlist>
+        <!-- Gale Crater Flyover -->
+        <gx:FlyTo>
+          <gx:duration>5.0</gx:duration>
+          <LookAt>
+            <longitude>137.4</longitude>
+            <latitude>-4.6</latitude>
+            <altitude>5000</altitude>
+            <range>100000</range>
+            <tilt>60</tilt>
+            <heading>0</heading>
+          </LookAt>
+        </gx:FlyTo>
+
+        <!-- Jezero Crater Flyover -->
+        <gx:FlyTo>
+          <gx:duration>5.0</gx:duration>
+          <LookAt>
+            <longitude>77.6</longitude>
+            <latitude>18.4</latitude>
+            <altitude>5000</altitude>
+            <range>100000</range>
+            <tilt>60</tilt>
+            <heading>0</heading>
+          </LookAt>
+        </gx:FlyTo>
+
+        <!-- Hellas Basin Flyover -->
+        <gx:FlyTo>
+          <gx:duration>5.0</gx:duration>
+          <LookAt>
+            <longitude>70.0</longitude>
+            <latitude>-42.0</latitude>
+            <altitude>5000</altitude>
+            <range>200000</range>
+            <tilt>60</tilt>
+            <heading>0</heading>
+          </LookAt>
+        </gx:FlyTo>
+      </gx:Playlist>
+    </gx:Tour>
+
+    <!-- Switch back to Earth -->
+    <NetworkLink>
+      <name>Switch back to Earth</name>
+      <Link>
+        <href>http://lg1:81/earth.kml</href>
+      </Link>
+    </NetworkLink>
+
+  </Document>
+</kml>
